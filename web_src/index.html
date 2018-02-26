@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Lookup</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>body { color: #202020; }</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js" crossorigin="anonymous"></script>
+        <script async src="websocket.min.js"></script>
+        <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="maxwidth center-block">
+            <h1 class="text-center whitetext">Help Desk User Administration</h1>
+            <div id="begin" class="wrapper vertical-center" style="display:none;">
+                <iframe width="0" height="0" name="dummyframe" id="dummyframe" class="hidden"></iframe>
+                <form id="loginForm" class="form-signin" onSubmit="return formLogin();" target="dummyframe">
+                    <h2 class="text-center form-signin-heading">AD Lookup</h2>
+                    <input type="text" class="form-control" name="Username" placeholder="Username" required autofocus=""/>
+                    <input type="password" class="form-control" name="Password" placeholder="Password" required/>
+                    <button class="btn btn-lg btn-primary btn-block" formnovalidate>Login</button>
+                    <span id="loginerror" class="error redtext" style="display:none;">Invalid Username/Password</span>
+                </form>
+            </div>
+            <div id="middle" class="center-block" style="display:none;">
+                <form id="userinfoForm" onsubmit="return formGetUserInfo();">
+                    <span class="input-group stylish-input-group">
+                        <input type="text" name="User" id="Userbox" class="form-control input-lg typeahead tt-query" placeholder="Username" autocomplete="off" spellcheck="false" required/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-lg" type="button" onclick="formGetUserInfo()" >
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </span>
+                    </span>
+                </form>
+                <span id="usererror" class="error redtext" style="display:none;">User not found</span>
+            </div>
+            <div id="content" class="center-block whitetext">
+            </div>
+        </div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="style.min.css">
+    </body>
+</html>
